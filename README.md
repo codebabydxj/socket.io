@@ -1,5 +1,6 @@
 # socket.io
 服务端
+
 io.on(‘connection’,function(socket));//监听客户端连接,回调函数会传递本次连接的socket
 
 io.sockets.emit(‘String’,data);//给所有客户端广播消息
@@ -9,12 +10,17 @@ io.sockets.socket(socketid).emit(‘String’, data);//给指定的客户端发�
 socket.on(‘String’,function(data));//监听客户端发送的信息
 
 socket.emit(‘String’, data);//给该socket的客户端发送消息
+
 广播消息
 
 //给除了自己以外的客户端广播消息
+
 socket.broadcast.emit("msg",{data:"hello,everyone"}); 
+
 //给所有客户端广播消息
+
 io.sockets.emit("msg",{data:"hello,all"});
+
 分组
 
 socket.on('group1', function (data) {
@@ -23,6 +29,7 @@ socket.on('group1', function (data) {
 socket.on('group2',function(data){
         socket.join('group2');
  });
+ 
 客户端发送
 
 socket.emit(‘group1’)，就可以加入group1分组；
@@ -37,8 +44,11 @@ socket.leave(data.room);
 对分组中的用户发送信息
 
 //不包括自己
+
 socket.broadcast.to('group1').emit('event_name', data);
+
 //包括自己
+
 io.sockets.in('group1').emit('event_name', data);
 broadcast方法允许当前socket client不在该分组内
 
@@ -47,6 +57,7 @@ broadcast方法允许当前socket client不在该分组内
 io.sockets.clients().forEach(function (socket) {
     //.....
 })
+
 获取分组信息
 
 //获取所有房间（分组）信息
@@ -62,6 +73,7 @@ io.of('/some').on('connection', function (socket) {
         socket.broadcast.emit('event_name',{});
     });
 });
+
 客户端
 
 var socket = io.connect('ws://103.31.201.154:5555/some')
