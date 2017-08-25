@@ -61,11 +61,17 @@ io.sockets.clients().forEach(function (socket) {
 获取分组信息
 
 //获取所有房间（分组）信息
+
 io.sockets.manager.rooms
+
 //来获取此socketid进入的房间信息
+
 io.sockets.manager.roomClients[socket.id]
+
 //获取particular room中的客户端，返回所有在此房间的socket实例
+
 io.sockets.clients('particular room')
+
 另一种分组方式
 
 io.of('/some').on('connection', function (socket) {
@@ -74,17 +80,19 @@ io.of('/some').on('connection', function (socket) {
     });
 });
 
-（2）》》》》》客户端
+客户端
 
 var socket = io.connect('ws://103.31.201.154:5555/some')
 socket.on('even_name',function(data){
    console.log(data);
 })
+
 客户端都链接到ws://103.31.201.154:5555 但是服务端可以通过io.of(‘/some’)将其过滤出来。
 
 另外，Socket.IO提供了4个配置的API：io.configure, io.set, io.enable, io.disable。其中io.set对单项进行设置，io.enable和io.disable用于单项设置布尔型的配置。io.configure可以让你对不同的生产环境（如devlopment，test等等）配置不同的参数。
 
-客户端
+（2）》》》》》客户端
+
 建立一个socket连接
 
 var socket = io(“ws://103.31.201.154:5555”);
@@ -107,15 +115,27 @@ socket.on('disconnect', function() {
 socket.on('reconnect', function() {
     console.log("重新连接到服务器");
 });
+
 客户端socket.on()监听的事件：
+
 connect：连接成功
+
 connecting：正在连接
+
 disconnect：断开连接
+
 connect_failed：连接失败
+
 error：错误发生，并且无法被其他事件类型所处理
+
 message：同服务器端message事件
+
 anything：同服务器端anything事件
+
 reconnect_failed：重连失败
+
 reconnect：成功重连
+
 reconnecting：正在重连
+
 当第一次连接时，事件触发顺序为：connecting->connect；当失去连接时，事件触发顺序为：disconnect->reconnecting（可能进行多次）->connecting->reconnect->connect。
