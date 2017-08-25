@@ -1,5 +1,4 @@
 # socket.io
-socket.io 中文文档
 服务端
 io.on(‘connection’,function(socket));//监听客户端连接,回调函数会传递本次连接的socket
 
