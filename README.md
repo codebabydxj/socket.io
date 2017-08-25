@@ -1,5 +1,5 @@
 # socket.io
-服务端
+（1）》》》》》服务端
 
 io.on(‘connection’,function(socket));//监听客户端连接,回调函数会传递本次连接的socket
 
@@ -74,7 +74,7 @@ io.of('/some').on('connection', function (socket) {
     });
 });
 
-客户端
+（2）》》》》》客户端
 
 var socket = io.connect('ws://103.31.201.154:5555/some')
 socket.on('even_name',function(data){
